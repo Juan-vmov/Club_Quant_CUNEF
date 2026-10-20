@@ -1,3 +1,18 @@
+"""
+Réplica del factor de momentum UMD (Up Minus Down) siguiendo
+"Fact, Fiction, and Momentum Investing" (Asness, Frazzini, Israel y Moskowitz, AQR, 2014).
+
+Datos: CRSP mensual (formato estilo Fama-French), desde diciembre de 1925
+hasta el 31 de diciembre de 2013. Se usan las acciones de NYSE, AMEX y NASDAQ.
+Los datos no se incluyen en el repositorio por la licencia de WRDS.
+
+Método:
+- Señal: retorno acumulado de t-12 a t-2 (se salta el mes t-1).
+- Tamaño: capitalización del mes anterior, con corte en la mediana del NYSE.
+- Momentum: percentiles 30 y 70 del NYSE dentro de cada grupo de tamaño.
+- Carteras ponderadas por capitalización:
+  UMD = 1/2 (Small Win + Big Win) - 1/2 (Small Lose + Big Lose).
+"""
 import pandas as pd
 import matplotlib as plt
 import math
